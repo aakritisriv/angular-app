@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <div class="toolbar" role="banner">
+        <img width="300" height="30" alt="Angular Logo" src="./../assets/logo.png" />
+    </div>
+</div>
+
+
+<div class="content" role="main">
+
+    <div class="container-fluid md-padding">
+        <div class="row">
+            <div class="col-xl">
+                <div class="card rabbit-card">
+                    <div class="card-body">
+                        <h5 class="card-title"> Message List</h5>
+                        <button (click)="getStatus()" class="btn btn-primary">Retreive</button>
+                        <div *ngIf="isStatusAvailable()">
+                            <p class="card-text"> Status: {{rabbitMQ.status}}</p>
+                            <p class="card-text"> Message: {{rabbitMQ.topic.message}}</p>
+                            <p class="card-text"> Time: {{rabbitMQ.topic.id | date:'mm-dd-yyyy hh:mm:ss'}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl">
+                <div class="card rabbit-card">
+                    <div class="card-body">
+                        <h5 class="card-title">RabbitMQ</h5>
+                        <button (click)="checkEvent(true)" *ngIf="isFunctionStopped()" class="btn btn-primary">Start Publishing</button>
+                        <button (click)="checkEvent(false)" *ngIf="!isFunctionStopped()" class="btn btn-primary">Stop Publishing</button>
+                        <p class="card-text">{{responsecode}}</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>
